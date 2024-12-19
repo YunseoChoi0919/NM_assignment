@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    html{
+        font-size: 10px;
+    }
+        @font-face {
+    font-family: 'MangoDdobak-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-3@1.1/MangoDdobak-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HakgyoansimWoojuR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+            font-family: 'GowunDodum-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body{
+            font-family:'GowunDodum-Regular' ;
+            background-color: rgb(255, 231, 193);
+            display:flex;
+            justify-content: center;
+        }
+    
+    .header {
+        
+        position: fixed; /* Fix the header to the top */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        top: 0; /* Position at the top of the page */
+        left: 0; /* Align it to the left side */
+        width: 100%; /* Make it span the full width */
+        height:80px;
+        z-index: 1000; /* Ensure it appears above other content */
+        background-color: rgba(255, 255, 255, 0.8); /* Optional: adds background to make sure it's visible over content */
+        backdrop-filter: blur(10px);
+        
+        margin :0;
+    
+}
+
+        .menu {
+            margin: 15px;
+            width: 35px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .menu:hover {
+            filter: brightness(0.8); /* hover 효과 */
+        }
+
+        .submenu {
+
+
+
+            display: none;
+            position: absolute;
+            top: 100%; /* 메뉴 바로 아래 */
+            right: 0;
+            margin:0;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 0;
+            z-index: 10;
+            width: 20vw;
+            list-style: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color:#612a03;
+        }
+
+
+
+
+
+        .submenu li {
+            padding: 5px ;
+            
+            
+        }
+
+        .submenu li a {
+            padding-left:8vw;
+            text-decoration: none;
+            font-size: 1.7rem;
+            color: #333;
+            display: block;
+            transition:  transform 0.2s ease;
+            text-align:left;
+            margin : 0;
+        }
+
+        .submenu li a:hover {
+            color: #ac410c;
+        }
+
+
+        .submenu li a:active{
+            color :  #ac410c;
+            transform: scale(1.2);
+
+        }
+
+        .menu:hover + .submenu {
+            display: block; /* 메뉴 이미지 위에 hover 시 서브메뉴 표시 */
+        }
+
+        .cate {
+            text-align: left;
+            font-size: 25px;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-top: 5px;
+            margin: 0;
+            color:#612a03;
+        }
+
+        .logo{
+            padding-left: 0px;
+            padding-top: 0;
+            transition: transform 0.2s ease;
+            
+
+        }
+
+        .logo:active{
+            transform: scale(1.15);
+        }
+
+        #goto{
+            padding:0;
+            margin:0;
+            position: absolute;
+            left:50%;
+            transform: translate(-50%,0);
+        }
+
+        .back{
+            
+            margin: 15px;
+            width: 35px;
+            cursor: pointer;
+            z-index: 1002;
+        
+        }
+
+
+        /* 여기서부터 페이지 내용 관련 */
+
+
+
+
+
+
+        .main_con{
+            /* display:flex; */
+            width:75vw;
+            /* position:absolute; */
+            top: 170px;
+            height: auto;
+            background-color: rgba(255,255,255,0.5); 
+            /* rgba(255,255,255,0.5) */
+            border-radius: 10px;
+            /* border:#612a03 2px solid; */
+            margin-top: 110px;
+            margin-bottom: 100px;
+            /* margin-bottom: 50px; */
+            /* min-height: 500px; */
+            min-width: 800px;
+            /* padding: 20px 20px; */
+            /* justify-content: space-around; */
+            padding :40px 40px;
+           
+           
+        }
+
+
+        .ingr {
+            display: flex;
+            border-top: #612a03 4px dotted;
+            border-bottom: #612a03 4px dotted;
+            flex-wrap: wrap;
+            justify-content:center; 
+            align-items: center;
+            /* padding: 0; */
+            margin: auto; /* 부모 요소 기준으로 중앙 배치 */
+            width: 80%;
+        }
+
+
+        .ingr_img{
+            padding:0;
+            margin :0;
+            background-color: transparent;
+
+        }
+
+        .ingr_name{
+            font-size:2em;
+            height: auto;
+            padding: 5px 5px;
+            text-align: center;
+
+        }
+
+
+        .ingr_chlid{
+            padding:0;
+            margin:0;
+            
+        }       
+
+        /* @media (max-width : 800px) {
+
+
+            .ingr_img{
+                width:150px;
+            }
+            
+        } */
+
+        .dish{
+            
+            padding-bottom:20px;
+
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; 
+        }
+
+
+        .dish_img{
+            border-radius: 10px;
+            background-color: #612a03;
+            overflow: hidden;
+            
+        }
+
+        #dish_name{
+            font-family: 'HakgyoansimWoojuR';
+            font-size: 5rem;
+            padding-top: 20px;
+            color: #612a03;
+        }
+
+
+        .instruction{
+            padding: 0;
+            width:80%;
+            margin:auto;
+        }
+
+        #steps{
+            padding-top:0px;
+            font-size: 1.7em;
+        }
+        .sub-step{
+            font-size : 1.9em;
+            padding: 0px;
+            color:#612a03;
+
+            
+        }
+
+
+
+
+    </style>
+</head>
+
+
+<body>
+    <div class="header">
+        <a id = 'back_button' href="javascript:history.back()">
+            <img class = "back" src = "back.png">
+        </a>
+        <a id = "goto" href="test.html">
+            <img class="logo" src="b_logo.png" width="250px">
+        </a>
+
+            <img class="menu" src="menu4.png" alt="Menu Icon">
+            <ul class="submenu">
+                <div class = 'cate'> 메인요리</div>
+                    <li><a href="#">잔치국수</a></li>
+                    <li><a href="#">닭도리탕</a></li>
+                    <li><a href="#">불고기</a></li>
+                    <li><a href="#">에그누들</a></li>
+                <div class = 'cate'> 반찬</div>
+                    <li><a href="#">시금치 나물</a></li>
+                    <li><a href="#">버섯 나물</a></li>
+                    <li><a href="#">미역 나물</a></li>
+                    <li><a href="#">호박나물</a></li>
+                    <li><a href="#">숙주나물</a></li>
+                    <li><a href="#">진미채</a></li>
+                    <li><a href="#">계란찜</a></li>
+                    <li><a href="#">산적</a></li>
+    
+                <div class = 'cate'> 국</div>
+                    <li><a href="#">된장찌개</a></li>
+                    <li><a href="#">미역국</a></li>
+                    <li><a href="#">육개장</a></li>
+            </ul>
+    
+
+    </div>
+
+    <div class = "main_con">
+
+        
+            <div class = 'dish'>
+                <img class="dish_img" src = "된장찌개.png" width = 400px >
+                <div id = "dish_name">
+                    된장찌개
+                </div>
+            </div>
+
+
+            <div class = "contents">
+                <div class = "ingr">
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>
+                    <div class = "ingr_chlid">
+                        <img class="ingr_img"src =  "1개.png" width = 100px>
+                        <div class="ingr_name">
+                            재료이름
+                        </div>
+                    </div>                                        
+                </div>
+
+
+
+
+                <div class = "instruction">
+                    <div id = "steps">
+
+                        <div class="sub-step">육수 준비</div>
+                        큰 냄비에 물 1.5L를 넣고 멸치, 다시마, 파 흰 부분, 양파, 무를 넣어 강불로 끓입니다.
+                        끓기 시작하면 중불로 줄이고 15분간 더 끓인 후, 체에 걸러 맑은 육수만 준비합니다.
+
+                        <div class="sub-step">된장 풀기</div>
+                        준비한 육수에 된장 3큰술을 체에 올려 숟가락으로 문질러 풀어줍니다.
+                        된장이 완전히 섞일 때까지 잘 저어줍니다.
+
+                        <div class="sub-step">재료 넣기</div>
+                        알새우, 양파, 감자를 먼저 넣고 중불에서 5분간 끓입니다.
+                        애호박, 파, 매운 고추를 넣고 3분간 더 끓입니다.
+                        마지막으로 두부와 꽃게를 넣고 3~5분간 끓여 완성합니다.
+                        
+                        <div class="sub-step">마무리</div>
+                        찌개의 간을 보고 부족하다면 된장을 약간 더 추가합니다.
+                        국물이 너무 걸쭉하면 물이나 육수를 조금 더 넣어 농도를 맞춥니다.
+                     
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class = "footer">
+
+    </div>
+
+
+
+
+
+    <script>
+        ///메뉴바 관련
+        const menu = document.querySelector('.menu');
+        const submenu = document.querySelector('.submenu');
+
+        let submenuTimeout;
+
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(submenuTimeout); // Clear any previous timeouts to avoid multiple delays
+            submenu.style.display = 'block'; // Show submenu immediately when mouse enters
+        });
+
+        menu.addEventListener('mouseleave', () => {
+            submenuTimeout = setTimeout(() => {
+                submenu.style.display = 'none'; // Hide submenu after 3 seconds
+            }, 200); // 3-second delay
+        });
+
+        // Keep the submenu visible when the mouse is over the submenu itself
+        submenu.addEventListener('mouseenter', () => {
+            clearTimeout(submenuTimeout); // Clear the timeout to keep the submenu visible
+        });
+
+        submenu.addEventListener('mouseleave', () => {
+            submenuTimeout = setTimeout(() => {
+                submenu.style.display = 'none'; // Hide submenu after 3 seconds
+            }, 400); // 3-second delay
+        });
+    </script>
+</body>
+</html>

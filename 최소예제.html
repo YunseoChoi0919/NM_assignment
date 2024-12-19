@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Hover Test</title>
+    <style>
+    .head {
+        position: relative;
+        display: flex; /* flexbox로 변경 */
+        justify-content: flex-end; /* 오른쪽 정렬 */
+        align-items: center;
+        width: 100%; /* 부모 요소 크기 지정 */
+    }
+    
+    .menu {
+        width: 35px;
+        cursor: pointer;
+    }
+    
+    .submenu {
+        display: none;
+        position: absolute;
+        top: 100%; /* 메뉴 바로 아래 */
+        right: 0; /* 부모의 왼쪽 끝에 맞추기 */
+        background-color: #fff;
+        border: 1px solid #ccc;
+        /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+        list-style: none;
+        padding: 10px 0;
+        z-index: 10;
+        width: 20vw;
+        transition: opacity 0.1s ease; /* 서브메뉴가 부드럽게 나타나도록 transition 추가 */
+    }
+    
+    .submenu li {
+        padding: 8px 15px;
+    }
+    
+    .submenu li a {
+        text-decoration: none;
+        font-family: Arial, sans-serif;
+        text-align:center;
+        font-size: 20px;
+        color: #333;
+        display: block;
+    }
+    
+    .submenu li a:hover {
+        background-color: #f0f0f0;
+    }
+
+    .head:hover .submenu {
+        display: block; /* 부모 요소에 hover 시 표시 */
+    }
+
+    .head.show .submenu {
+        display: block; /* show 클래스가 추가되면 메뉴 표시 */
+    }
+
+    .cate{
+        text-align: left;
+        font-size: 30px;
+        margin : 0;
+    }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="head">
+        <img class="menu" src="menu4.png" alt="Menu Icon">
+        <ul class="submenu">
+            <li class = 'cate'> 메인요리</li>
+            <li><a href="#">Submenu 1</a></li>
+            <li><a href="#">Submenu 2</a></li>
+            <li><a href="#">Submenu 3</a></li>
+            <li><a href="#">Submenu 4</a></li>
+            <li class = 'cate'> 반찬</li>
+            <li><a href="#">Submenu 1</a></li>
+            <li><a href="#">Submenu 2</a></li>
+            <li><a href="#">Submenu 3</a></li>
+            <li><a href="#">Submenu 4</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const head = document.querySelector('.head');
+        const submenu = document.querySelector('.submenu');
+
+        let timeout;
+
+        head.addEventListener('mouseenter', () => {
+            clearTimeout(timeout);
+            head.classList.add('show');
+        });
+
+        head.addEventListener('mouseleave', () => {
+            timeout = setTimeout(() => {
+                head.classList.remove('show');
+            }, 500); // 3초 동안 유지
+        });
+    </script>
+</body>
+</html>

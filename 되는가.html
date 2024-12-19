@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fullscreen Background</title>
+    <style>
+        @font-face {
+            font-family: 'GowunDodum-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            background-color: transparent;
+            overflow: hidden;
+            font-family: 'GowunDodum-Regular';
+        }
+
+        .background {
+            width: 100vw;
+            height: 100vh;
+            background-image: url(bg2.png);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative; /* 상대 위치 지정 */
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* 캔버스는 클릭 이벤트를 방해하지 않음 */
+        }
+
+        .main_info {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            padding: 50px 50px;
+            z-index: 1; /* 글과 로고가 캔버스 위에 위치하도록 설정 */
+        }
+
+        .logo {
+            position: relative;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 750px;
+            display: block;
+            margin: 0;
+        }
+
+        p {
+            text-align: left;
+            font-size: 15px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        span {
+            font-size: 13px;
+        }
+
+        .sub {
+            display: flex;
+            align-items: stretch;
+            gap: 20px;
+            justify-content: space-between;
+            padding-top: 20px;
+            padding-left: 45px;
+            padding-right: 45px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            width: 150px;
+            background-color: transparent;
+            color: #612a03;
+            border: 2px solid #612a03;
+            border-radius: 20px 20px 0 20px; /* 둥근 모서리 */
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #ffce5d;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .head {
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+        }
+
+        .menu {
+            margin: 15px;
+            width: 35px;
+            cursor: pointer;
+        }
+
+        .menu:hover {
+            filter: brightness(0.8); /* hover 효과 */
+        }
+
+        .submenu {
+    display: none;
+    position: absolute;
+    top: 100%; /* 메뉴 바로 아래 */
+    right: 0;
+    background-color: #fff;
+    padding: 10px 0;
+    z-index: 10;
+    width: 20vw;
+    list-style: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+        .submenu li {
+            padding: 8px 15px;
+        }
+
+        .submenu li a {
+            text-decoration: none;
+            font-size: 20px;
+            color: #333;
+            display: block;
+        }
+
+        .submenu li a:hover {
+            color: #ac410c;
+        }
+
+        .menu:hover + .submenu {
+            display: block; /* 메뉴 이미지 위에 hover 시 서브메뉴 표시 */
+        }
+
+        .cate {
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            padding-left: 15px;
+            margin: 10px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <canvas id="foodCanvas"></canvas>
+
+        <div class="head">
+            <img class="menu" src="menu4.png" alt="Menu Icon">
+            <ul class="submenu">
+                <div class="cate">메인요리</div>
+                <li><a href="#">Submenu 1</a></li>
+                <li><a href="#">Submenu 2</a></li>
+                <li><a href="#">Submenu 3</a></li>
+                <li><a href="#">Submenu 4</a></li>
+                <div class="cate">반찬</div>
+                <li><a href="#">Submenu 5</a></li>
+                <li><a href="#">Submenu 6</a></li>
+                <li><a href="#">Submenu 7</a></li>
+                <li><a href="#">Submenu 8</a></li>
+            </ul>
+        </div>
+
+        <div class="main_info">
+            <img class="logo" src="final_logo.png" alt="Logo">
+            <div class="sub">
+                <p>
+                    <span>
+                        항상 가족들을 위해 헌신했던 당신을 <br> 
+                        누군가의 아내이자, 엄마, 할머니가 아닌 인간 김수자로 기억하고 싶습니다.
+                    </span> <br><br>
+                    당신의 사랑이 담긴 음식은 그 어떤 곳에서도 찾을 수 없는 그런 특별한 맛이 있습니다. <br>
+                    맛의 비결은 레시피에 있는 것이 아닐지도 모르겠습니다.
+                </p>
+                <div class="buttons">
+                    <button>김수자씨 소개</button>
+                    <button>레시피 보러가기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('foodCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const foodImages = ['1개.png', '2소.png', '3조개.png']; // 음식 그림 파일 경로
+        const foods = [];
+
+        class Food {
+            constructor(img, x, y, speedX, speedY) {
+                this.img = img;
+                this.x = x;
+                this.y = y;
+                this.speedX = speedX;
+                this.speedY = speedY;
+                this.width = 100;
+                this.height = 100;
+            }
+
+            draw() {
+                ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x < 0 || this.x + this.width > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y + this.height > canvas.height) this.speedY *= -1;
+            }
+        }
+
+        foodImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                const speedX = (Math.random() - 0.5) * 2;
+                const speedY = (Math.random() - 0.5) * 2;
+                foods.push(new Food(img, x, y, speedX, speedY));
+            };
+        });
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            foods.forEach(food => {
+                food.update();
+                food.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+const menu = document.querySelector('.menu');
+const submenu = document.querySelector('.submenu');
+
+let submenuTimeout;
+
+menu.addEventListener('mouseenter', () => {
+    clearTimeout(submenuTimeout); // Clear any previous timeouts to avoid multiple delays
+    submenu.style.display = 'block'; // Show submenu immediately when mouse enters
+});
+
+menu.addEventListener('mouseleave', () => {
+    submenuTimeout = setTimeout(() => {
+        submenu.style.display = 'none'; // Hide submenu after 3 seconds
+    }, 200); // 3-second delay
+});
+
+// Keep the submenu visible when the mouse is over the submenu itself
+submenu.addEventListener('mouseenter', () => {
+    clearTimeout(submenuTimeout); // Clear the timeout to keep the submenu visible
+});
+
+submenu.addEventListener('mouseleave', () => {
+    submenuTimeout = setTimeout(() => {
+        submenu.style.display = 'none'; // Hide submenu after 3 seconds
+    }, 400); // 3-second delay
+});
+
+    </script>
+</body>
+</html>

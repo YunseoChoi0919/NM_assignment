@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+@font-face {
+            font-family: 'GowunDodum-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body{
+            font-family:'GowunDodum-Regular' ;
+            background-color: beige;
+        }
+    
+    .header {
+        
+    position: fixed; /* Fix the header to the top */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    top: 0; /* Position at the top of the page */
+    left: 0; /* Align it to the left side */
+    width: 100%; /* Make it span the full width */
+    height:80px;
+    z-index: 1000; /* Ensure it appears above other content */
+    background-color: rgba(255, 255, 255, 0.6); /* Optional: adds background to make sure it's visible over content */
+    
+    
+    margin :0;
+    
+}
+
+        .menu {
+            margin: 15px;
+            width: 35px;
+            cursor: pointer;
+            z-index: 1002;
+        }
+
+        .menu:hover {
+            filter: brightness(0.8); /* hover 효과 */
+        }
+
+        .submenu {
+
+
+
+            display: none;
+            position: absolute;
+            top: 100%; /* 메뉴 바로 아래 */
+            right: 0;
+            margin:0;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px 0;
+            z-index: 10;
+            width: 20vw;
+            list-style: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color:#612a03;
+        }
+
+
+
+
+
+        .submenu li {
+            padding: 5px ;
+            
+            
+        }
+
+        .submenu li a {
+            padding-left:8vw;
+            text-decoration: none;
+            font-size: 17px;
+            color: #333;
+            display: block;
+            transition:  transform 0.2s ease;
+            text-align:left;
+            margin : 0;
+        }
+
+        .submenu li a:hover {
+            color: #ac410c;
+        }
+
+
+        .submenu li a:active{
+            color :  #ac410c;
+            transform: scale(1.2);
+
+        }
+
+
+
+        .menu:hover + .submenu {
+            display: block; /* 메뉴 이미지 위에 hover 시 서브메뉴 표시 */
+        }
+
+        .cate {
+            text-align: left;
+            font-size: 25px;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-top: 5px;
+            margin: 0;
+            color:#612a03;
+        }
+
+        .footer{
+            position: absolute;
+            top:100%;
+            transform: translate(0,-100%);
+
+            font-size:15px;
+            padding: 20px 20px;
+
+        }
+
+        .logo{
+            padding-left: 0px;
+            padding-top: 0;
+            transition: transform 0.2s ease;
+            
+
+        }
+
+        .logo:active{
+            transform: scale(1.15);
+        }
+
+        #goto{
+            padding:0;
+            margin:0;
+            position: absolute;
+            left:50%;
+            transform: translate(-50%,0);
+        }
+
+
+
+
+
+    </style>
+</head>
+
+
+<body>
+    <div class="header">
+        <a id = "goto" href="test.html">
+            <img class="logo" src="b_logo.png" width="250px">
+        </a>
+
+            <img class="menu" src="menu4.png" alt="Menu Icon">
+            <ul class="submenu">
+                <div class = 'cate'> 메인요리</div>
+                    <li><a href="#">잔치국수</a></li>
+                    <li><a href="#">닭도리탕</a></li>
+                    <li><a href="#">불고기</a></li>
+                    <li><a href="#">에그누들</a></li>
+                <div class = 'cate'> 반찬</div>
+                    <li><a href="#">시금치 나물</a></li>
+                    <li><a href="#">버섯 나물</a></li>
+                    <li><a href="#">미역 나물</a></li>
+                    <li><a href="#">호박나물</a></li>
+                    <li><a href="#">숙주나물</a></li>
+                    <li><a href="#">진미채</a></li>
+                    <li><a href="#">계란찜</a></li>
+                    <li><a href="#">산적</a></li>
+    
+                <div class = 'cate'> 국</div>
+                    <li><a href="#">된장찌개</a></li>
+                    <li><a href="#">미역국</a></li>
+                    <li><a href="#">육개장</a></li>
+            </ul>
+    
+
+    </div>
+
+    <div class="cards">
+
+    </div>
+
+    <div class = "footer">
+
+    </div>
+
+
+
+
+
+    <script>
+        ///메뉴바 관련
+        const menu = document.querySelector('.menu');
+        const submenu = document.querySelector('.submenu');
+
+        let submenuTimeout;
+
+        menu.addEventListener('mouseenter', () => {
+            clearTimeout(submenuTimeout); // Clear any previous timeouts to avoid multiple delays
+            submenu.style.display = 'block'; // Show submenu immediately when mouse enters
+        });
+
+        menu.addEventListener('mouseleave', () => {
+            submenuTimeout = setTimeout(() => {
+                submenu.style.display = 'none'; // Hide submenu after 3 seconds
+            }, 200); // 3-second delay
+        });
+
+        // Keep the submenu visible when the mouse is over the submenu itself
+        submenu.addEventListener('mouseenter', () => {
+            clearTimeout(submenuTimeout); // Clear the timeout to keep the submenu visible
+        });
+
+        submenu.addEventListener('mouseleave', () => {
+            submenuTimeout = setTimeout(() => {
+                submenu.style.display = 'none'; // Hide submenu after 3 seconds
+            }, 400); // 3-second delay
+        });
+    </script>
+</body>
+</html>
